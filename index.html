@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine?</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(to bottom right, #ff9ecf, #ffd6e8);
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    color: white;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.btn-yes {
+    background-color: #ff4d88;
+    color: white;
+}
+
+.btn-no {
+    background-color: white;
+    color: #ff4d88;
+    position: relative;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.final-message {
+    display: none;
+    color: white;
+    font-size: 18px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+img {
+    width: 200px;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Step 1 -->
+<div class="step active" id="step1">
+    <h1>Would You Be My Valentine? 💝</h1>
+    <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+    <div class="buttons">
+        <button class="btn-yes" onclick="nextStep(2)">Yes</button>
+        <button class="btn-no" onmouseover="moveButton(this)">No</button>
+    </div>
+</div>
+
+<!-- Step 2 -->
+<div class="step" id="step2">
+    <h1>Are you sure you want to be my valentine? 💕</h1>
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+    <div class="buttons">
+        <button class="btn-yes" onclick="nextStep(3)">yeshh, 100% sure</button>
+        <button class="btn-no" onmouseover="moveButton(this)">humm let me think...</button>
+    </div>
+</div>
+
+<!-- Step 3 -->
+<div class="step" id="step3">
+    <h1>Promise me you'll always be my valentine ❤️</h1>
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+    <div class="buttons">
+        <button class="btn-yes" onclick="finalStep()">Yes, I Promise</button>
+    </div>
+</div>
+
+<!-- Final Message -->
+<div class="final-message" id="finalMessage">
+    <h1>yeayyyy omagah tahun ini i tak jomblo cause ada u, i luv u so much my baby girl^^</h1>
+    <p style="margin-top: 15px;">
+        thank u udah hadir di hidup i sama sama terus yaa sampai ketemuu
+    </p>
+    <p>
+        ohh ya bole tidak i minta pap u tiap hari, tapi kalo gabisa juga gapapa.
+    </p>
+</div>
+
+</div>
+
+<script>
+function nextStep(step) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step' + step).classList.add('active');
+}
+
+function finalStep() {
+    document.querySelectorAll('.step').forEach(s => s.style.display = "none");
+    document.getElementById('finalMessage').style.display = "block";
+
+    confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 }
+    });
+}
+
+function moveButton(button) {
+    const x = Math.random() * (window.innerWidth - button.offsetWidth);
+    const y = Math.random() * (window.innerHeight - button.offsetHeight);
+    button.style.position = "absolute";
+    button.style.left = x + "px";
+    button.style.top = y + "px";
+}
+</script>
+
+</body>
+</html>
